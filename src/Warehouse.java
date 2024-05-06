@@ -49,13 +49,18 @@ public class Warehouse implements Subject {
 
     @Override
     public void addObserver(Observer observer) {
+        this.observers.add(observer);
     }
 
     @Override
     public void removeObserver(Observer observer) {
+        this.observers.remove(observer);
     }
 
     @Override
     public void notifyObservers(String item) {
+        for (Observer observer : this.observers) {
+            observer.update(item);
+        }
     }
 }

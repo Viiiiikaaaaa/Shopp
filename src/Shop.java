@@ -3,16 +3,12 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Shop {
-    public Shop() {
-    }
-
     public static void main(String[] args) {
         System.out.println("Добро пожаловать в магазин мебели! В наличии столы, диваны, шкафы, кухни, кресла и многое другое!");
         System.out.println("Если Вы хотите совершить покупку, введите название мебели!");
         System.out.println("Для вывода в консоль текущей выручки введите \"income\",\" \"  и пароль администратора");
         System.out.println("Для просмотра количества товара на складе введите \"товары\"");
         System.out.println("Для завершения работы введите \"break\"");
-        Accounting acc = new Accounting();
         Warehouse wh = new Warehouse();
 
         Map<String, Integer> price = new HashMap();
@@ -37,12 +33,12 @@ public class Shop {
             }
 
             else if (item.indexOf(" ") >= 0) {
-                acc.getIncome(item.substring(item.indexOf(" ") + 1));
+                Accounting.getInstance().getIncome(item.substring(item.indexOf(" ") + 1));
             }
 
             else if (price.containsKey(item)) {
                 wh.update(item);
-                acc.update((Integer)price.get(item));
+                Accounting.getInstance().update((Integer)price.get(item));
             }
 
             else {

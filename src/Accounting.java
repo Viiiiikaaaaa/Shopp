@@ -3,7 +3,7 @@ public class Accounting  {
     private int income = 0;
     private final String PASSWORD = "admin";
 
-    public Accounting() {
+    private Accounting() {
     }
 
     public static Accounting getInstance() {
