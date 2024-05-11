@@ -1,11 +1,17 @@
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
 
 public class DeliveryService implements Observer {
-    @Override
-    public void update(Observable item, Object arg) {
+    Subject shop;
+    public DeliveryService(Subject shop)
+    {
+        this.shop=shop;
+        shop.registerObserver(this);
     }
-    public void update(String item) {
-        System.out.println("Товар \"" + item + "\" был куплен. Нужно организовать доставку.");
+
+    public void update(String item, Map<String, Integer> price,Map<String, Integer> quantity) {
+        if (quantity.containsKey(item)) {
+            int previousQuantity = quantity.get(item) + 1;
+            System.out.println("Товар \"" + item + "\" был куплен. Нужно организовать доставку.");
+        }
     }
 }
